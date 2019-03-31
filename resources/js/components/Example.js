@@ -6,11 +6,23 @@ export default class Example extends Component {
     constructor() {
         super();
         this.state = {
-            messages: []
+            messages: [],
+            publicMessage: ''
         }
     }
 
     componentDidMount() {
+        window.Echo.channel('chatMessage')
+            .listen('Posted', e => {
+                axios.get('/api/messages').then(res => {
+                    this.setState({
+                        messages: res.data
+                    });
+                }).catch(err => {
+
+                })
+            });
+
         axios.get('/api/messages').then(res => {
             this.setState({
                 messages: res.data
@@ -23,6 +35,7 @@ export default class Example extends Component {
     render() {
         return (
             <div className="container">
+                <div>{this.state.publicMessage}</div>
                 {
                     this.state.messages.map(message => {
                         return (

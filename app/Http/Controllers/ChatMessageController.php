@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ChatMessage;
+use App\Events\Posted;
 use Illuminate\Http\Request;
 
 class ChatMessageController extends Controller
@@ -37,7 +38,16 @@ class ChatMessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = new ChatMessage;
+
+        $message->text = $request->text;
+        $message->user_id = $request->user_id;
+        $message->room_id = $request->room_id;
+        $message->save();
+
+        event(new Posted($message));
+
+        return response()->json($message, 201);
     }
 
     /**
