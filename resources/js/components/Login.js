@@ -25,8 +25,8 @@ export default function SendMessage(props) {
                     Authorization: `Bearer ${res.data.access_token}`
                 }
             }).then(userRes => {
+                window.localStorage.setItem('access_token', res.data.access_token);
                 props.setIsLoggedIn(true);
-                // props.setPage('list');
                 props.setUserId(userRes.data.id);
             })
         }).catch(err => {
