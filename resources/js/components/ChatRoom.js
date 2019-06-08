@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
+import SendMessage from './SendMessage';
 
-export default class Example extends Component {
+export default class ChatRoom extends Component {
     constructor() {
         super();
         this.state = {
             messages: [],
             publicMessage: ''
-        }
+        };
     }
 
     componentDidMount() {
@@ -35,23 +35,27 @@ export default class Example extends Component {
     render() {
         return (
             <div className="container">
+                <header>
+                    <button onClick={() => this.props.setPage('list')}>back</button>
+                </header>
                 <div>{this.state.publicMessage}</div>
                 {
-                    this.state.messages.map(message => {
+                    this.state.messages
+                        .filter(message => message.room_id === this.props.roomId)
+                        .map(message => {
                         return (
-                            <div key={message.id} className={["aaa", message.user_id === 1 ? "myMessage" : "othersMessage"].join(" ")}>
+                            <div key={message.id} className={["aaa", message.user_id === this.props.userId ? "myMessage" : "othersMessage"].join(" ")}>
                                 <p className="message">{message.text}</p>
                             </div>
                         );
                     })
                 }
-                <input type="text" className="textBox"></input>
-                <button className="sendButton">send</button>
+                <SendMessage
+                    sendMessage={this.sendMessage}
+                    userId={this.props.userId}
+                    roomId={this.props.roomId}
+                />
             </div>
         );
     }
-}
-
-if (document.getElementById('example')) {
-    ReactDOM.render(<Example />, document.getElementById('example'));
 }
