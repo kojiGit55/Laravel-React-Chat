@@ -13,28 +13,28 @@
 //  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 //}
 
-#example {
-    //text-align: center;
-    background: #00B900;
-}
-//
+//#example {
+//    //text-align: center;
+//    background: #00B900;
+//}
+
 //.aaa {
 //    padding: 3px 150px;
 //}
 //
-.message {
-    border: thin solid white;
-    border-radius: 5px;
-    background: white;
-}
-
-.myMessage {
-    margin-left: 50%;
-}
-
-.othersMessage {
-    margin-right: 50%;
-}
+//.message {
+//    border: thin solid white;
+//    border-radius: 5px;
+//    background: white;
+//}
+//
+//.my-message {
+//    margin-left: 50%;
+//}
+//
+//.others-message {
+//    margin-right: 50%;
+//}
 //
 //.textBox {
 //    width: 100%;
@@ -44,6 +44,88 @@
 //    width: 10%;
 //}
 
-textAlignCenter, p {
+ p {
     text-align: center;
+}
+
+.chat-room {
+    padding: 20px 10px;
+    max-width: 700px;
+    margin: 15px auto;
+    text-align: right;
+    font-size: 14px;
+    background: #7da4cd;
+}
+
+.others-message-container {
+    width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.others-message-container .others-icon {
+    float: left;
+    margin-right: -50px;
+    width: 40px;
+}
+
+.others-message-container .others-icon img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.others-message-container .others-message {
+    width: 100%;
+    text-align: left;
+}
+
+.others-text {
+    display: inline-block;
+    position: relative;
+    margin: 0 0 0 50px;
+    padding: 10px;
+    max-width: 250px;
+    border-radius: 12px;
+    background: #edf1ee;
+}
+
+.others-text:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: -19px;
+    border: 8px solid transparent;
+    border-right: 18px solid #edf1ee;
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+}
+.others-text p {
+    margin: 0;
+    padding: 0;
+}
+
+.my-message {
+    margin: 10px 0;
+}
+.my-message p {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px 0 0;
+    padding: 8px;
+    max-width: 250px;
+    border-radius: 12px;
+    background: #30e852;
+    font-size: 15px;
+}
+
+.my-message p:after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    right: -19px;
+    border: 8px solid transparent;
+    border-left: 18px solid #30e852;
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
 }

@@ -7,8 +7,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function SendMessage(props) {
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
+    const [userName, setUserName] = useState('testa@example.com');
+    const [password, setPassword] = useState('testtest');
 
     const onClick = useCallback(() => {
         axios.post('/oauth/token', {
