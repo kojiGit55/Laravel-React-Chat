@@ -43,12 +43,14 @@ class ChatRoomController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ChatRoom  $chatRoom
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ChatRoom $chatRoom)
+    public function show(string $id)
     {
-        //
+        $room = ChatRoom::find($id);
+
+        return response()->json($room);
     }
 
     /**

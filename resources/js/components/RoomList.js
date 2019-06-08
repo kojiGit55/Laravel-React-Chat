@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
 import { withRouter } from "react-router-dom";
+import apiClient from "../utils/apiClient";
 
 class RoomList extends Component {
     constructor() {
@@ -13,14 +13,14 @@ class RoomList extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/rooms').then(res => {
+        apiClient.get('/api/rooms').then(res => {
             console.log(res.data);
             this.setState({
                 chatList: res.data
             });
         }).catch(err => {
 
-        })
+        });
     }
 
     handleClickRoom(roomId) {

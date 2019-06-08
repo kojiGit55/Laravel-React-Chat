@@ -5,7 +5,7 @@ import ChatRoom from "../components/ChatRoom";
 import Login from '../components/Login';
 import Auth from './Auth';
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
-import axios from "axios";
+import apiClient from "../utils/apiClient";
 
 export default function AppRouter() {
     const [isLoading, setIsLoading] = useState(true);
@@ -13,12 +13,7 @@ export default function AppRouter() {
     const [userId, setUserId] = useState(0);
 
     useEffect(() => {
-        const accessToken = window.localStorage.getItem('access_token');
-        axios.get('/api/user', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
-        }).then(userRes => {
+        apiClient.get('/api/user').then(userRes => {
             setIsLoggedIn(true);
             setUserId(userRes.data.id);
             setIsLoading(false);

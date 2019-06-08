@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import SendMessage from './SendMessage';
 import MyMessage from "./MyMessage";
 import OthersMessage from "./OthersMessage";
 import NavBar from "react-bootstrap/NavBar";
 import Button from "react-bootstrap/Button";
+import apiClient from "../utils/apiClient";
 
 export default class ChatRoom extends Component {
     constructor() {
         super();
         this.state = {
             messages: [],
+            roomName: ""
         };
         this.handleClickBack = this.handleClickBack.bind(this);
     }
@@ -18,7 +19,7 @@ export default class ChatRoom extends Component {
     componentDidMount() {
         window.Echo.channel('chatMessage')
             .listen('Posted', e => {
-                axios.get('/api/messages').then(res => {
+                apiClient.get('/api/messages').then(res => {
                     this.setState({
                         messages: res.data
                     });
@@ -27,12 +28,19 @@ export default class ChatRoom extends Component {
                 })
             });
 
-        axios.get('/api/messages').then(res => {
+        apiClient.get('/api/messages').then(res => {
             this.setState({
                 messages: res.data
             });
         }).catch(err => {
 
+        })
+
+        apiClient.get(`/api/rooms/${this.props.match.params.id}`).then(res => {
+            console.log(res.data);
+            this.setState({
+                roomName: res.data.name
+            })
         })
     }
 
@@ -47,7 +55,7 @@ export default class ChatRoom extends Component {
                 <NavBar bg="light" expand="lg">
                     <Button variant="light" onClick={this.handleClickBack}>back</Button>
                     <NavBar.Brand>
-                        Aさん
+                        {this.state.roomName}
                     </NavBar.Brand>
                 </NavBar>
                 <div className="messages-container">
