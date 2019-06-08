@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Redirect } from "react-router-dom";
 
 export default function SendMessage(props) {
     const [userName, setUserName] = useState('testa@example.com');
@@ -25,13 +26,15 @@ export default function SendMessage(props) {
                 }
             }).then(userRes => {
                 props.setIsLoggedIn(true);
-                props.setPage('list');
+                // props.setPage('list');
                 props.setUserId(userRes.data.id);
             })
         }).catch(err => {
 
         });
     }, [userName, password]);
+
+    if (props.isLoggedIn) return <Redirect to={{ pathname: "/rooms/" }} />;
 
     return (
         <Container>

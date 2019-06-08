@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ListGroup from "react-bootstrap/ListGroup";
 import ListGroupItem from "react-bootstrap/ListGroupItem";
+import { withRouter } from "react-router-dom";
 
-export default class RoomList extends Component {
+class RoomList extends Component {
     constructor() {
         super();
         this.state = {
@@ -13,6 +14,7 @@ export default class RoomList extends Component {
 
     componentDidMount() {
         axios.get('/api/rooms').then(res => {
+            console.log(res.data);
             this.setState({
                 chatList: res.data
             });
@@ -22,8 +24,7 @@ export default class RoomList extends Component {
     }
 
     handleClickRoom(roomId) {
-        this.props.setRoomId(roomId);
-        this.props.setPage('room')
+        this.props.history.push(`/rooms/${roomId}`)
     }
 
     render() {
@@ -44,3 +45,5 @@ export default class RoomList extends Component {
         );
     }
 }
+
+export default withRouter(RoomList)
