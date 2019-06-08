@@ -28,17 +28,19 @@ export default class RoomList extends Component {
 
     render() {
         return (
-            <ListGroup className="m-5">
-                {
-                    this.state.chatList.map(room => {
-                        return (
-                            <ListGroupItem key={room.id} onClick={() => this.handleClickRoom(room.id)}>
-                                {room.name}
-                            </ListGroupItem>
-                        );
-                    })
-                }
-            </ListGroup>
+            <div className="room-list w-50">
+                <ListGroup>
+                    {
+                        this.state.chatList.map(room => {
+                            return (
+                                <ListGroupItem key={room.id} onClick={() => this.handleClickRoom(room.id)}>
+                                    {room.name}
+                                </ListGroupItem>
+                            );
+                        })
+                    }
+                </ListGroup>
+            </div>
         );
     }
 }

@@ -37,7 +37,7 @@ export default class ChatRoom extends Component {
 
     render() {
         return (
-            <div className="chat-room">
+            <div className="chat-room w-50">
                 <NavBar bg="light" expand="lg">
                     <Button variant="light" onClick={() => this.props.setPage('list')}>back</Button>
                     <NavBar.Brand>
