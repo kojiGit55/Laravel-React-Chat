@@ -1,6 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import RoomList from '../components/RoomList';
+import RoomListContainer from '../containers/RoomListContainer';
 import ChatRoom from "../components/ChatRoom";
 import FriendList from "../components/FriendList";
 import Login from '../components/Login';
@@ -41,7 +40,7 @@ export default function AppRouter() {
                         exact
                         path="/rooms/"
                         render={ props =>
-                            <RoomList
+                            <RoomListContainer
                                 userId={userId}
                                 {...props}
                             />
