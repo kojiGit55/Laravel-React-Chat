@@ -37,7 +37,6 @@ export default class ChatRoom extends Component {
         })
 
         apiClient.get(`/api/rooms/${this.props.match.params.id}`).then(res => {
-            console.log(res.data);
             this.setState({
                 roomName: res.data.name
             })
@@ -49,7 +48,6 @@ export default class ChatRoom extends Component {
     }
 
     render() {
-        console.log(this.props.match.params);
         return (
             <div className="chat-room w-50">
                 <NavBar bg="light" expand="lg">

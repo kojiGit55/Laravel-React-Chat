@@ -6,8 +6,10 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Redirect } from "react-router-dom";
+import { connect } from 'react-redux'
+import { setUserId } from "../actions";
 
-export default function SendMessage(props) {
+function Login(props) {
     const [userName, setUserName] = useState('testa@example.com');
     const [password, setPassword] = useState('testtest');
 
@@ -26,8 +28,8 @@ export default function SendMessage(props) {
                 }
             }).then(userRes => {
                 window.localStorage.setItem('access_token', res.data.access_token);
-                props.setIsLoggedIn(true);
                 props.setUserId(userRes.data.id);
+                props.setIsLoggedIn(true);
             })
         }).catch(err => {
 
@@ -69,3 +71,19 @@ export default function SendMessage(props) {
         </Container>
     );
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        userId: state.userId
+    }
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        setUserId: (id) => {
+            dispatch(setUserId(id))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

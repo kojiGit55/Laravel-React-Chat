@@ -20,4 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:api']], function(){
     Route::resource('messages', 'ChatMessageController');
     Route::resource('rooms', 'ChatRoomController');
+    Route::get('followers', 'FriendsController@getFollowers');
+    Route::post('followers', 'FriendsController@follow');
+    Route::get('following', 'FriendsController@getFollowing');
+    Route::get('friends', 'FriendsController@getFriends');
+    Route::get('users/{id}/status', 'FriendsController@getFriendStatus');
+    Route::get('friends/{id}/room', 'FriendsController@getRoomIdByFriendId');
+    Route::get('fri/', 'FriendsController@fri');
 });

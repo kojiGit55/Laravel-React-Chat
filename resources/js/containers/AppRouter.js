@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import RoomList from '../components/RoomList';
 import ChatRoom from "../components/ChatRoom";
+import FriendList from "../components/FriendList";
 import Login from '../components/Login';
 import Auth from './Auth';
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
@@ -56,18 +57,23 @@ export default function AppRouter() {
                         }
                     />
                     <Route
-                        render={ () =>
-                            <Redirect to={{
-                                pathname: "/rooms/"
-                            }} />
+                        path="/friends/"
+                        render={ props =>
+                            <FriendList
+                                userId={userId}
+                                {...props}
+                            />
                         }
                     />
+                    {/*<Route*/}
+                    {/*    render={ () =>*/}
+                    {/*        <Redirect to={{*/}
+                    {/*            pathname: "/rooms/"*/}
+                    {/*        }} />*/}
+                    {/*    }*/}
+                    {/*/>*/}
                 </Auth>
             </Switch>
         </Router>
     );
-}
-
-if (document.getElementById('example')) {
-    ReactDOM.render(<AppRouter />, document.getElementById('example'));
 }

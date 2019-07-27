@@ -4,7 +4,8 @@ const apiClient = {
     get(url, params = {}) {
         return axios.get(url, {
             headers: {
-                Authorization: `Bearer ${window.localStorage.getItem('access_token')}`
+                Authorization: `Bearer ${window.localStorage.getItem('access_token')}`,
+                Accept: "application/json"
             },
             params: params
         });
