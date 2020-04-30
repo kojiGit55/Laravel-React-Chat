@@ -20,7 +20,7 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.8.0",
     "jest-cli": "^24.8.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "laravel-mix": "^4.0.7",
     "lodash": "^4.17.15",
     "popper.js": "^1.12",
