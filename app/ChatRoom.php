@@ -1,5 +1,5 @@
 <?php
-
+var_dump("");
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
